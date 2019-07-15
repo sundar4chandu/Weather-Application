@@ -1,0 +1,42 @@
+.current {
+    display: flex;
+    flex-flow: row wrap;
+    color: white;
+    padding: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10%;
+    width: 50%;
+    background: rgba(0,0,0,0.7);
+    box-shadow: 0 0 20px black;
+}
+
+.current .info {
+    justify-content: space-around;
+    flex-grow: 2;
+    width: 50%;
+}
+
+.current .info .city {
+    font-size: 26px;
+}
+
+.current .info .date {
+    font-size: 26px;
+}
+
+.current .info .temp {
+    font-size: 56px;
+}
+
+.current .info .wind {
+    font-size: 24px;
+}
+
+.current .info .min-max{
+    font-size: 24px;
+}
+
+.forecast-button{
+    color: black;
+}

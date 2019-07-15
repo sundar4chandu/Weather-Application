@@ -1,0 +1,29 @@
+<div class="container current-container">
+    <div class="current">
+        <div class="info">
+            <div class="loading" *ngIf="!weather">
+                <div class="loader"></div>
+                <p>Fetching your location and weather</p>
+            </div>
+            <div *ngIf="weather">
+                <div class="city"> {{weather.name}}, {{weather.sys.country}}
+                    <img [src]="weather.icon" alt="">
+                </div>
+                <div class="date">{{weather.dt | date : 'MMM dd'}}</div>
+                <div class="temp">{{weather.main.temp}}&deg; <small>F</small></div>
+                <div class="wind"><small><small>WIND:</small></small> {{weather.wind.speed}} {{wind.units}}/h</div>
+                <div class="min-max padding">
+                    <div class="pull-left"><i>Min: {{weather.main.temp_min}}</i></div>
+                    <div class="pull-right"><i>Max: {{weather.main.temp_max}}</i></div>
+                </div>
+            </div>
+            <div class="margin padding text-center">
+                <button class="btn btn-info btn-lg forecast-button" [routerLink]="['/forecast']">See
+                    Forecast</button>
+            </div>
+        </div>
+        <div class="location-error" *ngIf="errorMsg">
+            {{errorMsg}}
+        </div>
+    </div>
+</div>
