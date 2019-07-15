@@ -1,6 +1,9 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, tick } from '@angular/core/testing';
 
 import { ForecastComponent } from './forecast.component';
+import { RestService } from 'src/app/services/rest/rest.service';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { DatePipe } from '@angular/common';
 
 describe('ForecastComponent', () => {
   let component: ForecastComponent;
@@ -8,7 +11,9 @@ describe('ForecastComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ForecastComponent ]
+      imports: [ HttpClientTestingModule ],
+      declarations: [ ForecastComponent ],
+      providers: [ RestService, HttpTestingController, DatePipe  ]
     })
     .compileComponents();
   }));
@@ -21,5 +26,19 @@ describe('ForecastComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should have back button', () => { 
+    const compiled = fixture.debugElement.nativeElement;
+
+    expect(compiled.querySelector('button').textContent).toContain('Back');
+  })
+
+  xit('should call getWeatherForecast', () => {
+    spyOn(component, 'getWeatherForecast').and.callThrough();
+    tick();
+    fixture.detectChanges();
+
+    expect(component.getWeatherForecast).toHaveBeenCalled();
   });
 });

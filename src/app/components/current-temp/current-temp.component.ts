@@ -33,7 +33,7 @@ export class CurrentTempComponent implements OnInit {
     }).catch(err => {
       const alertMsg = 'Please allow location access.';
       window.alert(alertMsg);
-      this.errorMsg = 'User location is currently unavailable. Please turn on location services.'
+      this.errorMsg = 'User location is currently unavailable. Please turn on location services.';
     });
   }
 
