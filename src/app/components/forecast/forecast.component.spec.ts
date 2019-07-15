@@ -34,9 +34,9 @@ describe('ForecastComponent', () => {
     expect(compiled.querySelector('button').textContent).toContain('Back');
   })
 
-  xit('should call getWeatherForecast', () => {
+  it('should call getWeatherForecast', () => {
     spyOn(component, 'getWeatherForecast').and.callThrough();
-    tick();
+    component.ngOnInit();
     fixture.detectChanges();
 
     expect(component.getWeatherForecast).toHaveBeenCalled();

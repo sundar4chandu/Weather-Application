@@ -13,8 +13,7 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
 describe('CurrentTempComponent', () => {
   let component: CurrentTempComponent;
   let fixture: ComponentFixture<CurrentTempComponent>;
-  let location: Location;
-  let router: Router;
+
   let locationService: LocationService;
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -37,38 +36,33 @@ describe('CurrentTempComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  xit('should call get temperature function', () => {
+  it('should call get temperature function', () => {
     fixture = TestBed.createComponent(CurrentTempComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
-
     spyOn(component,'getCurrentTemp').and.callThrough();
+
+    component.ngOnInit();
+
+    fixture.detectChanges();
 
     expect(component.getCurrentTemp).toHaveBeenCalled();
   });
 
-  it('should navigate to forecast when button clicked', fakeAsync (() => {    
+  it('should have a see forecast button', fakeAsync (() => {    
     const fixture = TestBed.createComponent(CurrentTempComponent);
     const compiled = fixture.debugElement.nativeElement;
     const button = compiled.querySelector('button');
-    button.click();
-    tick(); // simulates the passage of time until all pending asynchronous activities finish
 
-    location = TestBed.get(Location);
-    fixture.detectChanges();
-    
-    tick();
-    
     expect(compiled.querySelector('button').textContent).toContain('See Forecast');
-    // expect(location.path()).toEqual('/forecast');
   }));
 
   xit('should alert error message if no location', fakeAsync(() => {
     spyOn(locationService,'getCurrentPosition').and.returnValue(Promise.reject({}));
-    spyOn(window, "alert");
-
+    spyOn(window, 'alert');
     fixture = TestBed.createComponent(CurrentTempComponent);
     component = fixture.componentInstance;
+    component.ngOnInit();
+
     fixture.detectChanges();
     
     expect(window.alert).toHaveBeenCalled();
