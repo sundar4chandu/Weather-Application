@@ -1,0 +1,66 @@
+<div class="forecast-container container padding">
+    <button type="button" class="btn btn-default back-button" routerLink="/current">
+        <span class="glyphicon glyphicon-chevron-left"></span> Back
+    </button>
+    <div class="current">
+        <div class="loading" *ngIf="!weatherForecast">
+            <div class="loader"></div>
+            <p>Hold tight ! We are fetching your location and weather forecast.</p>
+        </div>
+        <div class="info" *ngIf="weatherForecast">
+            <div>&nbsp;</div>
+            <div class="city">{{weatherForecast.city.name}}, {{weatherForecast.city.country}}
+                <img *ngIf="selectedWeather" [src]="iconUrl + selectedWeather.weather[0].icon + iconFormat" alt="">
+            </div>
+            <div class="selected-weather">
+                <div class="temp" *ngIf="selectedWeather">{{selectedWeather.main.temp}}&deg; <small>F</small></div>
+                <div class="wind" *ngIf="selectedWeather"><small><small>WIND:</small></small> {{selectedWeather.wind.speed}} m/h</div>        
+            </div>
+            <div>&nbsp;</div>
+        </div>
+    </div>
+    <div class="row" *ngIf="weatherForecast">
+        <div class="grid-button">
+            <button type="button" class="btn pull-right" (click)="toggleView()">
+                <span *ngIf="tableView" class="glyphicon glyphicon-th"></span>
+                <span *ngIf="!tableView" class="glyphicon glyphicon-th-list"></span>
+            </button>
+        </div>
+    </div>
+    <div class="future table-responsive" [ngClass]="{hidden: !tableView}">
+        <table class="table table-bordered forecast-table" *ngIf="forecast.length" [hidden]="!tableView">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th *ngFor="let item of forecast[1]">
+                        <h4>{{item.dt * 1000 | date : 'shortTime'}}</h4>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let list of forecast; index as i">
+                    <td class="date">
+                        <h3>{{list[i].dt * 1000 | date: 'MMM d'}}</h3>
+                    </td>
+                    <td class="day table-data" *ngFor="let item of forecast[i]" [ngClass]="{active: selectedWeather == item}" (click)="selectWeather(item)">
+                        {{item.main.temp}}&deg; <small>F</small>
+                        <img [src]="iconUrl + item.weather[0].icon + iconFormat" alt="">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="future future-grid" [ngClass]="{hidden: tableView}">
+        <ul class="list-group" *ngFor="let list of forecast; index as i">
+            <li>
+                <div class="card" *ngFor="let item of forecast[i]" [ngClass]="{active: selectedWeather == item}" (click)="selectWeather(item)">
+                    <div class="content">
+                        <h3>{{item.dt * 1000 | date: 'MMM d'}} <br> {{item.dt * 1000 | date: 'shortTime'}} </h3> 
+                        <h4>{{item.main.temp}}&deg; <p>F</p></h4> 
+                        <img [src]="iconUrl + item.weather[0].icon + iconFormat" alt="">
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
