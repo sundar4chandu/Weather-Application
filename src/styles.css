@@ -16,7 +16,7 @@
 
 .container{
     background-size: cover;
-    background-image: url("/assets/day.jpg");
+    background-image: url("assets/day.jpg");
     background-repeat: no-repeat;
     background-size:cover ;
     background-attachment: fixed;
