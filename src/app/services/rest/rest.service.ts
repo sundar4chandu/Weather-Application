@@ -7,8 +7,8 @@ import { HttpClient } from '@angular/common/http';
 export class RestService {
 
   private apiKey = '485aadc24a72037f4b275f596b02d236';
-  private currentTempUrl = 'http://api.openweathermap.org/data/2.5/weather?';
-  private forecastUrl = 'http://api.openweathermap.org/data/2.5/forecast?';
+  private currentTempUrl = 'https://api.openweathermap.org/data/2.5/weather?';
+  private forecastUrl = 'https://api.openweathermap.org/data/2.5/forecast?';
 
   private units = 'imperial';
 
