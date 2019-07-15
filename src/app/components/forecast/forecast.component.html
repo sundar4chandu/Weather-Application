@@ -13,6 +13,7 @@
                 <img *ngIf="selectedWeather" [src]="iconUrl + selectedWeather.weather[0].icon + iconFormat" alt="">
             </div>
             <div class="selected-weather">
+                <h4 *ngIf="selectedWeather">{{selectedWeather.dt * 1000 | date : 'shortTime'}}</h4>
                 <div class="temp" *ngIf="selectedWeather">{{selectedWeather.main.temp}}&deg; <small>F</small></div>
                 <div class="wind" *ngIf="selectedWeather"><small><small>WIND:</small></small> {{selectedWeather.wind.speed}} m/h</div>        
             </div>

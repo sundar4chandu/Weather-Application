@@ -9,7 +9,7 @@
                 <div class="city"> {{weather.name}}, {{weather.sys.country}}
                     <img [src]="weather.icon" alt="">
                 </div>
-                <div class="date">{{weather.dt | date : 'MMM dd'}}</div>
+                <div class="date">{{weather.dt | date : 'MMM dd'}}, <small>{{weather.dt * 1000 | date : 'shortTime'}}</small></div>
                 <div class="temp">{{weather.main.temp}}&deg; <small>F</small></div>
                 <div class="wind"><small><small>WIND:</small></small> {{weather.wind.speed}} {{wind.units}}/h</div>
                 <div class="min-max padding">
