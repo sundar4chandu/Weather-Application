@@ -41,11 +41,11 @@
             <tbody>
                 <tr *ngFor="let list of forecast; index as i">
                     <td class="date">
-                        <h3>{{list[i].dt * 1000 | date: 'MMM d'}}</h3>
+                        <h3>{{list[list.length - 1].dt * 1000 | date: 'MMM d'}}</h3>
                     </td>
                     <td class="day table-data" *ngFor="let item of forecast[i]" [ngClass]="{active: selectedWeather == item}" (click)="selectWeather(item)">
-                        {{item.main.temp}}&deg; <small>F</small>
-                        <img [src]="iconUrl + item.weather[0].icon + iconFormat" alt="">
+                        <h4 *ngIf="item.main">{{item.main.temp}}&deg; <small>F</small></h4>
+                        <img *ngIf="item.weather" [src]="iconUrl + item.weather[0].icon + iconFormat" alt="">
                     </td>
                 </tr>
             </tbody>
@@ -55,10 +55,10 @@
         <ul class="list-group" *ngFor="let list of forecast; index as i">
             <li>
                 <div class="card" *ngFor="let item of forecast[i]" [ngClass]="{active: selectedWeather == item}" (click)="selectWeather(item)">
-                    <div class="content">
-                        <h3>{{item.dt * 1000 | date: 'MMM d'}} <br> {{item.dt * 1000 | date: 'shortTime'}} </h3> 
-                        <h4>{{item.main.temp}}&deg; <p>F</p></h4> 
-                        <img [src]="iconUrl + item.weather[0].icon + iconFormat" alt="">
+                    <div class="content" *ngIf="item.main">
+                        <h3 *ngIf="item.main">{{item.dt * 1000 | date: 'MMM d'}} <br> {{item.dt * 1000 | date: 'shortTime'}} </h3> 
+                        <h4 *ngIf="item.main">{{item.main.temp}}&deg; <p>F</p></h4> 
+                        <img *ngIf="item.weather" [src]="iconUrl + item.weather[0].icon + iconFormat" alt="">
                     </div>
                 </div>
             </li>

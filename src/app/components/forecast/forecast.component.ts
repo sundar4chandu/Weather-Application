@@ -44,7 +44,7 @@ export class ForecastComponent implements OnInit {
   setTableData(data) {
     let dates = [];
     data.forEach(element => {
-      const date = this.dateFilter.transform(element.dt * 1000, 'shortDate');
+      const date = this.dateFilter.transform(element.dt * 1000, 'MMM d');
       if(dates.indexOf(date) !== -1){
         this.forecast[dates.indexOf(date)].push(element);
       } else {
@@ -53,6 +53,9 @@ export class ForecastComponent implements OnInit {
         this.forecast[dates.indexOf(date)].push(element);
       }
     });
+    for (let i = 0; i < this.forecast[this.forecast.length - 1].length; i++) {
+      this.forecast[0].unshift('');
+    }
   }
 
   selectWeather(item){
