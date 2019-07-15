@@ -1,24 +1,46 @@
 import { TestBed } from '@angular/core/testing';
-
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RestService } from './rest.service';
-import { HttpClient } from '@angular/common/http';
+import { of } from 'rxjs';
 
 describe('RestService', () => {
-  let service: RestService;
-  let http: HttpClient;
+  let restService: RestService;
 
-  beforeEach(() => {service = new RestService(http)});
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
+      providers: [RestService]
+    });
+    restService = TestBed.get(RestService);
+
+  });
 
   it('should be created', () => {
-    const service: RestService = TestBed.get(RestService);
-    expect(service).toBeTruthy();
+    expect(restService).toBeTruthy();
   });
 
-  it('#getValue should return real value', () => {
-    let lat = '';
-    let lng = '';
-    
-    expect(service.getCurrentTemp(lat,lng)) ;
+  it('get current temperature should return observable', () => {
+    const weather = [{}];
+
+    spyOn(restService, 'getCurrentTemp').and.returnValue(of(weather));
+
+    let response;
+    restService.getCurrentTemp(43.2342, -81.1231).subscribe(res => {
+      response = res;
+    });
+    expect(response).toEqual(weather);
   });
 
+  it('get weather forecast should return array', () => {
+    const forecast = [];
+    forecast.length = 40;
+
+    spyOn(restService, 'getweatherForecast').and.returnValue(of(forecast));
+
+    let response;
+    restService.getweatherForecast(43.2342, -81.1231).subscribe(res => {
+      response = res;
+    });
+    expect(response.length).toEqual(forecast.length);
+  });
 });

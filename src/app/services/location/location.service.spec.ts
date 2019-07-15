@@ -1,12 +1,25 @@
 import { TestBed } from '@angular/core/testing';
-
 import { LocationService } from './location.service';
 
 describe('LocationService', () => {
-  beforeEach(() => TestBed.configureTestingModule({}));
+  let locationService: LocationService;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      providers: [LocationService]
+    });
+    locationService = TestBed.get(LocationService);
+  });
 
   it('should be created', () => {
-    const service: LocationService = TestBed.get(LocationService);
-    expect(service).toBeTruthy();
+    expect(locationService).toBeTruthy();
+  });
+
+  it('getCurrentPosition should return a promise', () => {
+    const location = {};
+    spyOn(locationService, 'getCurrentPosition').and.returnValue(Promise.resolve(location));
+    locationService.getCurrentPosition().then(res => {
+      expect(res).toEqual(location);
+    });
   });
 });
