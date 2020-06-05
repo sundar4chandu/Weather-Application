@@ -20,3 +20,10 @@ steps:
     npm install
     ng build --prod --output-path docs --base-href /Weather-Application/
   displayName: 'npm install and build'
+
+- task: OctopusPush@4
+  inputs:
+    OctoConnectedServiceName: 'Octopus Deploy'
+    Space: 'Spaces-1'
+    Package: 'dist/'
+    Replace: 'true'
