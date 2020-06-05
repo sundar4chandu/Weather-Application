@@ -18,12 +18,18 @@ steps:
 - script: |
     npm install -g @angular/cli
     npm install
-    ng build --prod --output-path docs --base-href /Weather-Application/
+    ng test
+    ng build --prod
   displayName: 'npm install and build'
 
-- task: OctopusPush@4
+- task: PublishTestResults@2
   inputs:
-    OctoConnectedServiceName: 'Octopus Deploy'
-    Space: 'Spaces-1'
-    Package: 'dist/'
-    Replace: 'true'
+    testResultsFormat: 'JUnit'
+    testResultsFiles: '**/TEST-*.xml'
+
+# - task: OctopusPush@4
+#   inputs:
+#     OctoConnectedServiceName: 'Octopus Deploy'
+#     Space: 'Spaces-1'
+#     Package: 'dist/weather-app'
+#     Replace: 'true'
