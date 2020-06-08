@@ -19,7 +19,7 @@ steps:
     npm install -g @angular/cli
     npm install
     ng test
-    ng build --prod
+    ng build
   displayName: 'npm install and build'
 
 
@@ -33,13 +33,13 @@ steps:
 #     pathtoPublish: $(Build.ArtifactStagingDirectory) # dist or build files
 #     ArtifactName: 'www' # output artifact named www
 
-# - task: OctopusPack@4
-#   inputs:
-#     PackageId: 'Weather.App'
-#     PackageFormat: 'Zip'
-#     PackageVersion: '0.0.1'
-#     SourcePath: 'dist/wather-application'
-#     OutputPath: 'dist/weather-build'
+- task: OctopusPack@4
+  inputs:
+    PackageId: 'Weather.App'
+    PackageFormat: 'Zip'
+    PackageVersion: '0.0.1'
+    SourcePath: 'dist/wather-application'
+    OutputPath: 'dist/weather-build'
 
 # - task: OctopusPush@4
 #   inputs:
