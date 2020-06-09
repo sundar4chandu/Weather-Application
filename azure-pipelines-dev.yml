@@ -49,5 +49,5 @@ steps:
   inputs:
     OctoConnectedServiceName: 'Octopus Deploy'
     Space: 'Spaces-1'
-    Package: 'build'
+    Package: 'build/*.zip'
     Replace: 'true'
