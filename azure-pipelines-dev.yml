@@ -25,13 +25,14 @@ steps:
 
 # - task: CopyFiles@2
 #   inputs:
-#     Contents: 'dist/weather-application/**' # Pull the build directory (Angular)
+#     Contents: 'src/weather-application/dist/**' # Pull the build directory (Angular)
 #     TargetFolder: 'build'
 
-- task: PublishBuildArtifacts@1
-  inputs: 
-    pathtoPublish: 'dist/weather-application/**' # dist or build files
-    ArtifactName: 'www' # output artifact named www
+
+- task: PublishPipelineArtifact@0
+  inputs:
+    artifactName: 'weather'
+    targetPath: 'src/weather-application/dist'
 
 - task: OctopusPack@4
   inputs:
