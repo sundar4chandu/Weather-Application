@@ -32,18 +32,18 @@ steps:
 
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: 'dist/ng-azure-devops'
+    PathtoPublish: 'dist/weather-app'
     ArtifactName: 'web-app'
     publishLocation: 'Container'
   displayName: 'Publish Artifacts'
 
-# - task: OctopusPack@4
-#   inputs:
-#     PackageId: 'Weather.App'
-#     PackageFormat: 'Zip'
-#     PackageVersion: '0.0.1'
-#     SourcePath: '$(System.DefaultWorkingDirectory)/dist/wather-application'
-#     OutputPath: '$(System.DefaultWorkingDirectory)/build'
+- task: OctopusPack@4
+  inputs:
+    PackageId: 'Weather.App'
+    PackageFormat: 'Zip'
+    PackageVersion: '0.0.1'
+    SourcePath: '$(System.DefaultWorkingDirectory)/dist/wather-app'
+    OutputPath: '$(System.DefaultWorkingDirectory)/build'
 
 # - task: OctopusPush@4
 #   inputs:
