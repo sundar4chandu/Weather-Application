@@ -22,24 +22,13 @@ steps:
     ng build --prod
   displayName: 'npm install and build'
 
-- task: PublishPipelineArtifact@1
-  inputs:
-    targetPath: 'dist'
-    artifact: 'weather'
-    publishLocation: 'pipeline'
-
-# - task: CopyFiles@2
-#   inputs:
-#     Contents: 'src/weather-application/dist/**' # Pull the build directory (Angular)
-#     TargetFolder: 'build'
-
 - task: OctopusPack@4
   inputs:
     PackageId: 'Weather.App'
     PackageFormat: 'Zip'
     PackageVersion: '0.0.1'
-    SourcePath: 'dist/wather-application'
-    OutputPath: 'build'
+    SourcePath: '$(System.DefaultWorkingDirectory)/dist/wather-application'
+    OutputPath: '$(System.DefaultWorkingDirectory)/build'
 
 # - task: OctopusPush@4
 #   inputs:
