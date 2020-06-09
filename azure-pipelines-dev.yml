@@ -45,9 +45,9 @@ steps:
     SourcePath: 'dist/weather-app'
     OutputPath: 'build'
 
-# - task: OctopusPush@4
-#   inputs:
-#     OctoConnectedServiceName: 'Octopus Deploy'
-#     Space: 'Spaces-1'
-#     Package: 'dist/weather-app'
-#     Replace: 'true'
+- task: OctopusPush@4
+  inputs:
+    OctoConnectedServiceName: 'Octopus Deploy'
+    Space: 'Spaces-1'
+    Package: 'build'
+    Replace: 'true'
