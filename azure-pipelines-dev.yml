@@ -15,20 +15,35 @@ steps:
     versionSpec: '10.x'
   displayName: 'Install Node.js'
 
-- script: |
-    npm install -g @angular/cli
-    npm install
-    ng test
-    ng build --prod
-  displayName: 'npm install and build'
+- script: npm install
+  displayName: 'Install Dependencies'
 
-- task: OctopusPack@4
+- script: npx ng build --prod
+  displayName: 'Build'
+
+- script: npx ng test --watch=false
+  displayName: 'Tests'
+
+- task: PublishTestResults@2
   inputs:
-    PackageId: 'Weather.App'
-    PackageFormat: 'Zip'
-    PackageVersion: '0.0.1'
-    SourcePath: '$(System.DefaultWorkingDirectory)/dist/wather-application'
-    OutputPath: '$(System.DefaultWorkingDirectory)/build'
+    testResultsFormat: 'JUnit'
+    testResultsFiles: '**/TEST-*.xml'
+  displayName: 'Publish Test Results'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: 'dist/ng-azure-devops'
+    ArtifactName: 'web-app'
+    publishLocation: 'Container'
+  displayName: 'Publish Artifacts'
+
+# - task: OctopusPack@4
+#   inputs:
+#     PackageId: 'Weather.App'
+#     PackageFormat: 'Zip'
+#     PackageVersion: '0.0.1'
+#     SourcePath: '$(System.DefaultWorkingDirectory)/dist/wather-application'
+#     OutputPath: '$(System.DefaultWorkingDirectory)/build'
 
 # - task: OctopusPush@4
 #   inputs:
