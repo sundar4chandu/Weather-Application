@@ -33,7 +33,7 @@ steps:
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: 'dist/weather-app'
-    ArtifactName: 'web-app'
+    ArtifactName: 'weather-app'
     publishLocation: 'Container'
   displayName: 'Publish Artifacts'
 
@@ -51,3 +51,4 @@ steps:
     Space: 'Spaces-1'
     Package: 'build/*.zip'
     Replace: 'true'
+
