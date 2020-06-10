@@ -43,12 +43,12 @@ steps:
     PackageFormat: 'Zip'
     PackageVersion: '0.0.1'
     SourcePath: 'dist/weather-app'
-    OutputPath: 'build'
+    OutputPath: 'packages'
 
 - task: OctopusPush@4
   inputs:
     OctoConnectedServiceName: 'Octopus Deploy'
     Space: 'Spaces-1'
-    Package: 'build/*.zip'
+    Package: 'packages/*.zip'
     Replace: 'true'
 
