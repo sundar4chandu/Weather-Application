@@ -21,7 +21,7 @@ steps:
 - script: npx ng build --prod
   displayName: 'Build'
 
-- script: npx ng test --watch=false
+- script: npx ng test --watch=false --codeCoverage=true
   displayName: 'Tests'
 
 - task: PublishTestResults@2
@@ -29,6 +29,13 @@ steps:
     testResultsFormat: 'JUnit'
     testResultsFiles: '**/TESTS-*.xml'
   displayName: 'Publish Test Results'
+
+- task: PublishCodeCoverageResults@1
+  condition: succeededOrFailed()
+  inputs:
+    codeCoverageTool: 'Cobertura'
+    summaryFileLocation: 'coverage/weather-app/cobertura-coverage.xml'
+  displayName: 'Publish Code Coverage Results'
 
 - task: PublishBuildArtifacts@1
   inputs:
