@@ -27,7 +27,7 @@ steps:
 - task: PublishTestResults@2
   inputs:
     testResultsFormat: 'JUnit'
-    testResultsFiles: '**/TEST-*.xml'
+    testResultsFiles: 'TEST-REULTS.xml'
   displayName: 'Publish Test Results'
 
 - task: PublishBuildArtifacts@1
