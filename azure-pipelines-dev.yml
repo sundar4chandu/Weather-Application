@@ -44,6 +44,14 @@ steps:
     publishLocation: 'Container'
   displayName: 'Publish Artifacts'
 
+- task: AzureRmWebAppDeployment@4
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'Azure subscription 1 (ddc2285a-0a59-420c-afcd-14c3b693c9b5)'
+    appType: 'webApp'
+    WebAppName: 'angular-weather'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+
 - task: OctopusPack@4
   inputs:
     PackageId: 'Weather.App'
