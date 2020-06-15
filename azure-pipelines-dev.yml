@@ -44,11 +44,6 @@ steps:
     publishLocation: 'Container'
   displayName: 'Publish Artifacts'
 
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'weather'
-    publishLocation: 'Container'
 
 - task: OctopusPack@4
   inputs:
