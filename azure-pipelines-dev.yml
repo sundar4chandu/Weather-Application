@@ -68,14 +68,6 @@ steps:
     DeployToEnvironment: 'Environments-1'
     DeploymentProgress: true
 
-# - task: OctopusCreateRelease@4
-#   inputs:
-#     OctoConnectedServiceName: 'Octopus Deploy'
-#     Space: 'Spaces-1'
-#     ProjectName: 'Projects-1'
-#     Channel: 'Channels-1'
-#     DeployToEnvironment: 'Environments-1'
-
 - task: OctopusDeployRelease@4
   inputs:
     OctoConnectedServiceName: 'Octopus Deploy'
@@ -83,13 +75,5 @@ steps:
     Project: 'Projects-1'
     ReleaseNumber: 'latest'
     Environments: 'Environments-1'
-
-# - task: OctopusDeployRelease@4
-#   inputs:
-#     OctoConnectedServiceName: 'Octopus Deploy'
-#     Space: 'Spaces-1'
-#     Project: 'Projects-1'
-#     ReleaseNumber: 'latest'
-#     Environments: 'Environments-1'
-#     ShowProgress: false
+    ShowProgress: true
 
