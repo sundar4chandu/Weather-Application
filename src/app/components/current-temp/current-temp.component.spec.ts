@@ -53,7 +53,7 @@ describe('CurrentTempComponent', () => {
     const compiled = fixture.debugElement.nativeElement;
     const button = compiled.querySelector('button');
 
-    expect(compiled.querySelector('button').textContent).toContain('Show Forecast');
+    expect(compiled.querySelector('button').textContent).toContain('See Forecast');
   }));
 
   xit('should alert error message if no location', fakeAsync(() => {
