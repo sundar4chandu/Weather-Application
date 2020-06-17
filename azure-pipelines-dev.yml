@@ -44,11 +44,18 @@ steps:
     publishLocation: 'Container'
   displayName: 'Publish Artifacts'
 
+# - task: OctopusPack@4
+#   inputs:
+#     PackageId: 'Weather.App'
+#     PackageFormat: 'Zip'
+#     PackageVersion: '0.0.1'
+#     SourcePath: 'dist/weather-app'
+#     OutputPath: 'packages'
+
 - task: OctopusPack@4
   inputs:
     PackageId: 'Weather.App'
     PackageFormat: 'Zip'
-    PackageVersion: '0.0.1'
     SourcePath: 'dist/weather-app'
     OutputPath: 'packages'
 
